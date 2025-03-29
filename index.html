@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinetex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 100px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #34495e;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .image-slideshow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .feature-item p {
+            color: #7f8c8d;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .product-info p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: #2c3e50;
+            color: #fff;
+        }
+        
+        .contact .section-title h2 {
+            color: #fff;
+        }
+        
+        .contact .section-title p {
+            color: #ecf0f1;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ecf0f1;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #e74c3c;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .hero-image {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .hero-text p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            
+            .hero-image {
+                height: 300px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+         /* Additional styles for existing sections */
+    /* Product Card Badges */
+    .product-card {
+        position: relative;
+    }
+    
+    .product-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #e74c3c;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1;
+    }
+    
+    .product-badge.new {
+        background-color: #2ecc71;
+    }
+    
+    .product-badge.premium {
+        background-color: #f39c12;
+    }
+    
+    .product-btn {
+        display: inline-block;
+        background-color: #e74c3c;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 15px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .product-btn:hover {
+        background-color: #c0392b;
+    }
+    
+    /* Custom Sections */
+    .custom-section {
+        padding: 80px 0;
+    }
+    
+    .custom-section.light {
+        background-color: #f9f9f9;
+    }
+    
+    .custom-section.primary {
+        background-color: #2c3e50;
+        color: #fff;
+    }
+    
+    /* Clients Section */
+    .clients {
+        padding: 60px 0;
+        background-color: #fff;
+    }
+    
+    .clients-slider {
+        position: relative;
+        overflow: hidden;
+        padding: 20px 0;
+    }
+    
+    .clients-track {
+        display: flex;
+        animation: scrollClients 30s linear infinite;
+    }
+    
+    .client-item {
+        flex: 0 0 auto;
+        width: 160px;
+        height: 80px;
+        margin: 0 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+    
+    .client-item:hover {
+        filter: grayscale(0);
+        opacity: 1;
+    }
+    
+    .client-item img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+    @keyframes scrollClients {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+    }
+    
+    .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .testimonial-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .testimonial-content {
+        margin-bottom: 20px;
+        font-style: italic;
+        color: #34495e;
+        position: relative;
+    }
+    
+    .testimonial-content::before {
+        content: '"';
+        font-size: 60px;
+        color: #e74c3c;
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        opacity: 0.2;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+    
+    .author-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+    }
+    
+    .author-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .author-info h4 {
+        margin: 0;
+        font-size: 18px;
+        color: #2c3e50;
+    }
+    
+    .author-info p {
+        margin: 5px 0 0;
+        color: #7f8c8d;
+        font-size: 14px;
+    }
+    
+    /* Contact Section */
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    /* Enhanced Responsive Styles */
+    @media (max-width: 992px) {
+        .contact-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .testimonial-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+    }
+    
+    @media (max-width: 768px) {
+        nav ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul.show {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin: 10px 0;
+        }
+        
+        .mobile-menu {
+            display: block;
+        }
+        
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .category-tabs {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .category-tab {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+        
+        .product-card {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .client-item {
+            width: 120px;
+            margin: 0 10px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .feature-item {
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+        }
+        
+        .feature-item h3 {
+            font-size: 20px;
+        }
+        
+        .section-title h2 {
+            font-size: 24px;
+        }
+        
+        .section-title p {
+            font-size: 14px;
+        }
+        
+        .testimonial-card {
+            padding: 20px;
+        }
+        
+        .newsletter-form {
+            flex-direction: column;
+        }
+        
+        .newsletter-form input {
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .newsletter-form button {
+            border-radius: 5px;
+            padding: 12px;
+        }
+        
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-column {
+            text-align: center;
+        }
+        
+        .social-icons {
+            justify-content: center;
+        }
+        
+        .contact-item {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .faq-question h3 {
+            font-size: 16px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Add this script section just before the closing </body> tag -->
+<script>
+    // Slideshow functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image slideshow
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Category tabs functionality
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const categoryItems = document.querySelectorAll('.category-item');
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                // Show/hide category items based on selected category
+                categoryItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // FAQ functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', function() {
+                // Toggle active class
+                item.classList.toggle('active');
+                
+                // Toggle plus/minus icon
+                const icon = this.querySelector('.faq-toggle i');
+                if (item.classList.contains('active')) {
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+        });
+    });
+</script>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"><span>SHINETEX</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Premium Garment Accessories</h1>
+                    <p>Discover our exclusive collection of high-quality imported garment accessories for all your fashion needs. From buttons and zippers to ribbons and lace, we offer the finest materials to elevate your designs.</p>
+                    <a href="#products" class="cta-button">Explore Products</a>
+                </div>
+                <div class="hero-image">
+                    <div class="image-slideshow">
+                        <div class="slide active">
+                            <img src="img/Buttons_(504354910).jpg" alt="Premium Buttons">
+                        </div>
+                        <div class="slide">
+                            <img src="img/img-customised-zip-puller.jpg" alt="Luxury Zippers">
+                        </div>
+                        <div class="slide">
+                            <img src="img/laces.webp" alt="Designer Laces">
+                        </div>
+                        <div class="slide">
+                            <img src="img/elsticlaces.jpg" alt="Fashion Embellishments">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+    
+    <!-- Products Section -->
+<section class="products" id="products">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Premium Accessories</h2>
+            <p>Discover our exclusive collection of high-quality imported garment accessories designed to enhance your fashion creations.</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Zippers Product -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-badge">Best Seller</div>
+                <div class="product-image">
+                    <img src="img/img-customised-zip-puller.jpg" alt="Premium Zippers">
+                </div>
+                <div class="product-info">
+                    <h3>Premium Zippers</h3>
+                    <p>High-quality metal and nylon zippers available in various sizes, colors, and finishes for all your garment needs.</p>
+                    <div class="product-features">
+                        <span><i class="fas fa-check"></i> Smooth operation</span>
+                        <span><i class="fas fa-check"></i> Rust-resistant</span>
+                        <span><i class="fas fa-check"></i> Custom sizes available</span>
+                    </div>
+                    <a href="#contact" class="product-btn">Request Samples</a>
+                </div>
+            </div>
+            
+            <!-- Rubber Badge Product -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-badge">New</div>
+                <div class="product-image">
+                    <img src="img/elsticlaces.jpg" alt="Elastic Laces">
+                </div>
+                <div class="product-info">
+                    <h3>Elastic Laces</h3>
+                    <p>Custom-designed rubber badges that add a distinctive look to your garments. Durable and washable.</p>
+                    <div class="product-features">
+                        <span><i class="fas fa-check"></i> Custom designs</span>
+                        <span><i class="fas fa-check"></i> Water-resistant</span>
+                        <span><i class="fas fa-check"></i> Flexible material</span>
+                    </div>
+                    <a href="#contact" class="product-btn">Request Samples</a>
+                </div>
+            </div>
+            
+            <!-- Leather Badge Product -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-badge">Premium</div>
+                <div class="product-image">
+                    <img src="img/laces.webp" alt="Leather Badges">
+                </div>
+                <div class="product-info">
+                    <h3>Laces</h3>
+                    <p>Luxurious genuine and faux leather badges that add elegance and premium feel to your clothing line.</p>
+                    <div class="product-features">
+                        <span><i class="fas fa-check"></i> Genuine leather options</span>
+                        <span><i class="fas fa-check"></i> Embossed designs</span>
+                        <span><i class="fas fa-check"></i> Various finishes available</span>
+                    </div>
+                    <a href="#contact" class="product-btn">Request Samples</a>
+                </div>
+            </div>
+            
+            <!-- Snap Buttons Product -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="product-badge">Popular</div>
+                <div class="product-image">
+                    <img src="img/Buttons_(504354910).jpg" alt="Snap Buttons">
+                </div>
+                <div class="product-info">
+                    <h3>Snap Buttons</h3>
+                    <p>High-quality metal snap buttons in various sizes and finishes. Perfect for jeans, jackets, and casual wear.</p>
+                    <div class="product-features">
+                        <span><i class="fas fa-check"></i> Easy installation</span>
+                        <span><i class="fas fa-check"></i> Corrosion-resistant</span>
+                        <span><i class="fas fa-check"></i> Custom engravings</span>
+                    </div>
+                    <a href="#contact" class="product-btn">Request Samples</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Categories Section -->
+<section class="custom-section light">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Product Categories</h2>
+            <p>Explore our wide range of garment accessories categorized for your convenience</p>
+        </div>
+        
+        <div class="categories-container" data-aos="fade-up">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">All Products</button>
+                <button class="category-tab" data-category="fasteners">Fasteners</button>
+                <button class="category-tab" data-category="badges">Badges & Labels</button>
+                <button class="category-tab" data-category="decorative">Decorative Elements</button>
+            </div>
+            
+            <div class="category-content">
+                <div class="category-grid">
+                    <div class="category-item" data-category="fasteners">
+                        <img src="img/img-customised-zip-puller.jpg" alt="Zippers">
+                        <h4>Zippers</h4>
+                    </div>
+                    <div class="category-item" data-category="fasteners">
+                        <img src="/api/placeholder/300/200" alt="Nylon Zippers">
+                        <h4>Laces</h4>
+                    </div>
+                    <div class="category-item" data-category="fasteners">
+                        <img src="/api/placeholder/300/200" alt="Plastic Buttons">
+                        <h4>ZIP Pullers</h4>
+                    </div>
+                    <div class="category-item" data-category="fasteners">
+                        <img src="img/Buttons_(504354910).jpg" alt="Metal Buttons">
+                        <h4>BUTTONS</h4>
+                    </div>
+                    <div class="category-item" data-category="badges">
+                        <img src="/api/placeholder/300/200" alt="PVC Badges">
+                        <h4>AGLET / KUPPI</h4>
+                    </div>
+                    <div class="category-item" data-category="badges">
+                        <img src="/api/placeholder/300/200" alt="Woven Labels">
+                        <h4>BADGES</h4>
+                    </div>
+                    <div class="category-item" data-category="decorative">
+                        <img src="/api/placeholder/300/200" alt="Metal Tags">
+                        <h4>EYELET</h4>
+                    </div>
+                    <div class="category-item" data-category="decorative">
+                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <h4>ROPE</h4>
+                    </div>
+                    <div class="category-item" data-category="decorative">
+                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <h4>MESH</h4>
+                    </div>
+                    <div class="category-item" data-category="decorative">
+                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <h4>BUCKLES</h4>
+                    </div>
+                    <div class="category-item" data-category="decorative">
+                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <h4>TRIMS FABRIC</h4>
+                    </div>
+                    <div class="category-item" data-category="decorative">
+                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <h4>ELASTIC</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Section -->
+<section class="clients">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Clients</h2>
+            <p>Trusted by leading fashion brands around the world</p>
+        </div>
+        
+        <div class="clients-slider">
+            <div class="clients-track">
+                <!-- Add client logos - using placeholder images -->
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 1">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 2">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 3">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 4">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 5">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 6">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 7">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 8">
+                </div>
+                <!-- Duplicate for continuous scrolling -->
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 1">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 2">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 3">
+                </div>
+                <div class="client-item">
+                    <img src="/api/placeholder/160/80" alt="Client 4">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Client Testimonials</h2>
+            <p>What our clients say about our products and services</p>
+        </div>
+        
+        <div class="testimonial-grid">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-content">
+                    <p>The quality of the zippers and buttons we received exceeded our expectations. Our customers have noticed the difference in our garments since we switched to Elite Accessories.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="/api/placeholder/100/100" alt="Author">
+                    </div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Fashion Designer, StyleWorks</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-content">
+                    <p>The custom leather badges they created for our premium line helped us differentiate in a competitive market. Their attention to detail is remarkable.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="/api/placeholder/100/100" alt="Author">
+                    </div>
+                    <div class="author-info">
+                        <h4>David Chen</h4>
+                        <p>Production Manager, Urban Trends</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="testimonial-content">
+                    <p>We've been working with Elite Accessories for over 5 years now. Their consistent quality and on-time delivery have made them our preferred supplier for all our accessory needs.</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="/api/placeholder/100/100" alt="Author">
+                    </div>
+                    <div class="author-info">
+                        <h4>Maria Rodriguez</h4>
+                        <p>CEO, FashionFusion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Contact Us</h2>
+            <p>Get in touch with our team for quotes, samples, or custom requirements</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="100">
+                <h3>Get In Touch</h3>
+                <p>We're here to answer any questions you have about our products, services, or custom solutions. Reach out to us using any of the following methods:</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>No.14, Duraisamipuram, 2nd street, RA Agency Line, <br>Lakshmi Nagar, Tirupur - 641 602</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Mobile</h4>
+                            <p>97150 99540</p>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>shinetextpr@gmail.com</p>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container" data-aos="fade-up" data-aos-delay="200">
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Your Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" placeholder="Your Company">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Subject">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            I agree to the privacy policy and terms of service
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Location Map Section -->
+<section class="map-section">
+    <div class="location-map">
+        <img src="/api/placeholder/1200/400" alt="Location Map">
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="custom-section light">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about our products and services</p>
+        </div>
+        
+        <div class="faq-container" data-aos="fade-up">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the minimum order quantity?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our minimum order quantities vary by product type. For standard items, MOQs typically start at 500-1000 pieces. For custom designs, the MOQ may be higher. Please contact our sales team for specific product MOQs.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you offer samples before bulk orders?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we provide samples for all our products. Sample fees may apply but are often credited back on bulk orders. Sample production typically takes 3-7 business days plus shipping time.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the production lead time?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Standard production lead time is 15-25 days after sample approval, depending on the product type and quantity. Rush orders may be accommodated with an additional fee. During peak seasons, lead times may be extended.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you ship internationally?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we ship to customers worldwide. We work with various international shipping carriers and can arrange door-to-door delivery. Shipping costs and delivery timeframes vary by destination.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="custom-section primary">
+    <div class="container">
+        <div class="newsletter-container" data-aos="fade-up">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Stay updated with our latest products, industry trends, and exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Elite Accessories</h3>
+                <p>All types of Imported garment accessories supplier for the fashion industry. Quality, innovation, and reliability since 2024.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="#">Zippers</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Rubber Badges</a></li>
+                    <li><a href="#">Leather Badges</a></li>
+                    <li><a href="#">Labels</a></li>
+                    <li><a href="#">Custom Accessories</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <ul class="contact-list">
+                    <li><i class="fas fa-map-marker-alt"></i> No.14, Duraisamipuram, 2nd street, RA Agency Line, Lakshmi Nagar, Tirupur - 641 602</li>
+                    <li><i class="fas fa-phone"></i> 97150 99540</li>
+                    <li><i class="fas fa-envelope"></i> shinetextpr@gmail.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 ShineTex. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Additional CSS for new sections -->
+<style>
+    /* Product Features */
+    .product-features {
+        margin: 15px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .product-features span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #7f8c8d;
+        font-size: 14px;
+    }
+    
+    .product-features i {
+        color: #2ecc71;
+    }
+    
+    /* Categories */
+    .categories-container {
+        margin-top: 30px;
+    }
+    
+    .category-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+        justify-content: center;
+    }
+    
+    .category-tab {
+        padding: 10px 20px;
+        background-color: #ecf0f1;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        color: #34495e;
+        transition: all 0.3s ease;
+    }
+    
+    .category-tab:hover {
+        background-color: #bdc3c7;
+    }
+    
+    .category-tab.active {
+        background-color: #e74c3c;
+        color: #fff;
+    }
+    
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .category-item {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .category-item:hover {
+        transform: translateY(-10px);
+    }
+    
+    .category-item img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+    }
+    
+    .category-item h4 {
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+        font-size: 16px;
+    }
+    
+    /* Contact styles */
+    .contact-details {
+        margin-top: 30px;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .contact-item i {
+        font-size: 24px;
+        color: #e74c3c;
+        margin-top: 5px;
+    }
+    
+    .contact-item h4 {
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+    
+    .contact-item p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .social-links {
+        margin-top: 30px;
+    }
+    
+    .social-links h4 {
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-row .form-group {
+        flex: 1;
+    }
+    
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        user-select: none;
+    }
+    
+    .checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    
+    .checkmark {
+        height: 20px;
+        width: 20px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        position: relative;
+    }
+    
+    .checkbox-container:hover input ~ .checkmark {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .checkbox-container input:checked ~ .checkmark {
+        background-color: #e74c3c;
+    }
+    
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    
+    .checkbox-container input:checked ~ .checkmark:after {
+        display: block;
+    }
+    
+    .checkbox-container .checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    
+    /* Map Section */
+    .map-section {
+        height: 400px;
+    }
+    
+    .location-map {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .location-map img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* FAQ Section */
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .faq-item {
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .faq-question {
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .faq-question h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+    
+    .faq-toggle {
+        font-size: 16px;
+        color: #e74c3c;
+    }
+    
+    .faq-answer {
+        padding: 0 20px 20px;
+        display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+        display: block;
+    }
+    
+    .faq-item.active .faq-toggle i {
+        transform: rotate(45deg);
+    }
+    
+    /* Newsletter Section */
+    .newsletter-container {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .newsletter-content h2 {
+        margin-bottom: 15px;
+        font-size: 32px;
+    }
+    
+    .newsletter-content p {
+        margin-bottom: 30px;
+    }
+    
+    .newsletter-form {
+        display: flex;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .newsletter-form input {
+        flex: 1;
+        padding: 15px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        font-size: 16px;
+    }
+    
+    .newsletter-form button {
+        padding: 0 25px;
+        background-color: #2c3e50;
+        color: #fff;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .newsletter-form button:hover {
+        background-color: #1a252f;
+    }
+    
+    /* Footer Contact List */
+    .contact-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .contact-list li i {
+        color: #e74c3c;
+        margin-top: 3px;
+    }
+    
+  
