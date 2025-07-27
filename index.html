@@ -28,22 +28,22 @@
         }
         
         /* Header Styles */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-        }
+       .header {
+    width: 100%;
+    background-color: #ffffff;
+    /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px;
+}
         
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
+        /* .logo {
             font-size: 24px;
             font-weight: 700;
             color: #2c3e50;
@@ -51,7 +51,14 @@
         
         .logo span {
             color: #e74c3c;
-        }
+        } */
+
+        .logo-img {
+    max-height: 100px;
+    height: auto;
+    width: auto;
+    display: block;
+}
         
         nav ul {
             display: flex;
@@ -418,6 +425,30 @@
             color: #bdc3c7;
             font-size: 14px;
         }
+
+        .highlight-brochure {
+    background-color: #e60000; /* Bright red */
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    animation: pulse 2s infinite;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.highlight-brochure:hover {
+    background-color: #b30000;
+    text-decoration: underline;
+}
+
+/* Optional pulse animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(230, 0, 0, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(230, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(230, 0, 0, 0); }
+}
         
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -870,13 +901,17 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo"><span>SHINETEX</span></div>
+                <div class="logo">
+        <img src="img/shinetexlogo.jpeg" alt="Shinetex Logo" class="logo-img">
+    </div>
                 <nav>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
+                        <li><a href="#products">Features</a></li>
                         <li><a href="#products">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                      <li><a href="img/shine-tex-famlet.pdf" class="highlight-brochure" target="_blank">📥 Download Brochure</a></li>
+                        
                     </ul>
                 </nav>
                 <div class="mobile-menu">
@@ -930,11 +965,11 @@
             <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="product-badge">Best Seller</div>
                 <div class="product-image">
-                    <img src="img/img-customised-zip-puller.jpg" alt="Premium Zippers">
+                    <img src="img/premiumzippers.jpeg" alt="Premium Zippers">
                 </div>
                 <div class="product-info">
                     <h3>Premium Zippers</h3>
-                    <p>High-quality metal and nylon zippers available in various sizes, colors, and finishes for all your garment needs.</p>
+                    <p>High-quality Plastic,metal and nylon zippers available in various sizes, colors, and finishes for all your garment needs.</p>
                     <div class="product-features">
                         <span><i class="fas fa-check"></i> Smooth operation</span>
                         <span><i class="fas fa-check"></i> Rust-resistant</span>
@@ -952,7 +987,7 @@
                 </div>
                 <div class="product-info">
                     <h3>Elastic Laces</h3>
-                    <p>Custom-designed rubber badges that add a distinctive look to your garments. Durable and washable.</p>
+                    <p>Custom-designed Elastic badges that add a distinctive look to your garments. Durable and washable.</p>
                     <div class="product-features">
                         <span><i class="fas fa-check"></i> Custom designs</span>
                         <span><i class="fas fa-check"></i> Water-resistant</span>
@@ -984,7 +1019,7 @@
             <div class="product-card" data-aos="fade-up" data-aos-delay="400">
                 <div class="product-badge">Popular</div>
                 <div class="product-image">
-                    <img src="img/Buttons_(504354910).jpg" alt="Snap Buttons">
+                    <img src="img/snapbuttons.jpeg" alt="Snap Buttons">
                 </div>
                 <div class="product-info">
                     <h3>Snap Buttons</h3>
@@ -1011,10 +1046,10 @@
         
         <div class="categories-container" data-aos="fade-up">
             <div class="category-tabs">
-                <button class="category-tab active" data-category="all">All Products</button>
+                <!-- <button class="category-tab active" data-category="all">All Products</button>
                 <button class="category-tab" data-category="fasteners">Fasteners</button>
                 <button class="category-tab" data-category="badges">Badges & Labels</button>
-                <button class="category-tab" data-category="decorative">Decorative Elements</button>
+                <button class="category-tab" data-category="decorative">Decorative Elements</button> -->
             </div>
             
             <div class="category-content">
@@ -1024,49 +1059,43 @@
                         <h4>Zippers</h4>
                     </div>
                     <div class="category-item" data-category="fasteners">
-                        <img src="/api/placeholder/300/200" alt="Nylon Zippers">
+                        <img src="img/premiumzippers.jpeg" alt="Premium Zippers">
                         <h4>Laces</h4>
                     </div>
                     <div class="category-item" data-category="fasteners">
-                        <img src="/api/placeholder/300/200" alt="Plastic Buttons">
-                        <h4>ZIP Pullers</h4>
+                        <img src="img/snapbuttons.jpeg" alt="Plastic Buttons">
+                        <h4>Snap Buttons</h4>
                     </div>
                     <div class="category-item" data-category="fasteners">
-                        <img src="img/Buttons_(504354910).jpg" alt="Metal Buttons">
+                        <img src="img/Buttons_(504354910).jpg" alt="Snap Buttons">
                         <h4>BUTTONS</h4>
                     </div>
                     <div class="category-item" data-category="badges">
-                        <img src="/api/placeholder/300/200" alt="PVC Badges">
-                        <h4>AGLET / KUPPI</h4>
+                        <img src="img/badges.avif" alt="Badges">
+                        <h4>Badges</h4>
                     </div>
                     <div class="category-item" data-category="badges">
-                        <img src="/api/placeholder/300/200" alt="Woven Labels">
-                        <h4>BADGES</h4>
+                        <img src="img/eyelets.jpeg" alt="Woven Labels">
+                        <h4>Eyelets</h4>
+                    </div>
+                   
+                    <div class="category-item" data-category="decorative">
+                        <img src="img/taps.jpeg" alt="Embroidered Patches">
+                        <h4>Tapes</h4>
                     </div>
                     <div class="category-item" data-category="decorative">
-                        <img src="/api/placeholder/300/200" alt="Metal Tags">
-                        <h4>EYELET</h4>
-                    </div>
-                    <div class="category-item" data-category="decorative">
-                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
-                        <h4>ROPE</h4>
-                    </div>
-                    <div class="category-item" data-category="decorative">
-                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <img src="img/fancymesh_fabric.jpeg" alt="Embroidered Patches">
                         <h4>MESH</h4>
                     </div>
                     <div class="category-item" data-category="decorative">
-                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
+                        <img src="img/buckles.jpeg" alt="Embroidered Patches">
                         <h4>BUCKLES</h4>
                     </div>
-                    <div class="category-item" data-category="decorative">
-                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
-                        <h4>TRIMS FABRIC</h4>
+                     <div class="category-item" data-category="decorative">
+                        <img src="img/pom_tassel.jpeg" alt="Embroidered Patches">
+                        <h4>POM Tassel</h4>
                     </div>
-                    <div class="category-item" data-category="decorative">
-                        <img src="/api/placeholder/300/200" alt="Embroidered Patches">
-                        <h4>ELASTIC</h4>
-                    </div>
+                   
                 </div>
             </div>
         </div>
